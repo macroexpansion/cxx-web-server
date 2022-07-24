@@ -13,6 +13,7 @@ class TcpListener {
         sockaddr_in m_addr;
 
         TcpListener(int port);
+        ~TcpListener();
         int listen();
 };
 

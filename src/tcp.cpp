@@ -30,6 +30,10 @@ TcpListener::TcpListener(int port) : m_port(port) {
     }
 }
 
+TcpListener::~TcpListener() {
+    std::cout << "called destructor" << std::endl;
+}
+
 int TcpListener::listen() {
     int socket = accept(m_socket_fd, (sockaddr*)&m_addr, (socklen_t*)&m_addr_length);
     return socket;

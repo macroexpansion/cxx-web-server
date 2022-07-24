@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <memory>
 
 #include "tcp.hpp"
 
@@ -10,12 +11,12 @@ int main(int argc, char** argv) {
     char message_in_bytes[message.length()]; 
     strcpy(message_in_bytes, message.c_str());
 
-    TcpListener* listener = new TcpListener(8000);
+    TcpListener listener = TcpListener(8000);
 
     while (true) {
-        std::cout << "listening on port " << listener->m_port << std::endl;
+        std::cout << "listening on port " << listener.m_port << std::endl;
 
-        int socket = listener->listen();
+        int socket = listener.listen();
         if (socket < 0) {
             std::cerr << "cannot accept connection" << std::endl;
             return -1;
